@@ -1,7 +1,16 @@
-from fastembed import TextEmbedding
+import os
+import requests
+from dotenv import load_dotenv
 
-model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
+load_dotenv()
+
+HF_TOKEN = os.getenv("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")
+API_URL = "https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
 
 def get_embedding(text: str) -> list[float]:
-    embeddings = list(model.embed([text]))
-    return embeddings[0].tolist()
+response = requests.post(
+API_URL,
+headers={"Authorization": f"Bearer {HF_TOKEN}"},
+json={"inputs": text}
+)
+return response.json()[0]
