@@ -13,7 +13,7 @@ router = APIRouter()
 
 def get_db():
 	return psycopg2.connect(
-		host="ep-orange-sea-anek5ugr.c-6.us-east-1.aws.neon.tech",
+		host="ep-cool-flower-alv1hluv.c-3.eu-central-1.aws.neon.tech",
 		port=5432,
 		dbname="neondb",
 		user="neondb_owner",
