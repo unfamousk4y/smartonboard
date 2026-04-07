@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import documents
 
 app = FastAPI(title="SmartOnboard API")
 
@@ -11,6 +12,8 @@ app.add_middleware(
 	allow_headers=["*"]
 
 )
+
+app.include_router(documents.router, prefix="/api/documents")
 
 @app.get("/health")
 def health():
